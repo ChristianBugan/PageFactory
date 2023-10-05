@@ -3,11 +3,13 @@
     <test name="123" >
        
        <parameter name="appURL" value="http://keyfood.ro" />
+       <parameter name="user" value="customer1" />
+       <parameter name="pass" value="customer@123" />
        
        
         <classes>
            
-            <class name="tests.DropdownTest" ></class>          
+            <class name="tests.LoginTest" ></class>          
         </classes>
     </test>
 </suite>
