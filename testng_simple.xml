@@ -1,9 +1,19 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Suite1" >
+
+	<listeners>
+	<listener class-name="utils.TestNgListener"></listener>
+	
+	</listeners>
+
+
+
+
     <test name="123" >
        
        <parameter name="appURL" value="http://keyfood.ro" />
-       <parameter name="user" value="customer1" />
+       <parameter name="user" value="customer" />
+       <parameter name="user2" value="customer2" />
        <parameter name="pass" value="customer@123" />
        
        
