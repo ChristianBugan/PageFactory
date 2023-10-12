@@ -29,6 +29,9 @@ public class MyAccountPage extends SeleniumWrappers {
 	@FindBy(css ="a[href*='logout']")
 	public WebElement logoutButton;
 	
+	@FindBy(css ="ul[class='woocommerce-error']")
+	public WebElement loginErrorMsg;
+	
 	/*String idDinamic;
 	@FindBy(css="div[class='woocommerce-MyAccount-content "+ idDinamic+"']");
 	public WebElement testElement; */

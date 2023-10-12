@@ -22,18 +22,20 @@ import com.google.common.io.Files;
 
 import pages.BasePage;
 
-public class BaseTest {
+public class BaseTest extends Driver {
 
 	public BasePage app;
-	public static WebDriver driver;
+	public WebDriver driver;
 	
-	@Parameters({"appURL"})
+	@Parameters({"appURL", "browser"})
 	@BeforeClass(alwaysRun = true)
-	public void setup(String url) {
+	public void setup(String url, String browser) {
 		
-		driver = new ChromeDriver();
+		//driver = new ChromeDriver();
 		
 		//driver = new FirefoxDriver();
+		
+		driver = initDriver(browser);
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
