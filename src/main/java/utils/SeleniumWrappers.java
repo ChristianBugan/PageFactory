@@ -1,12 +1,24 @@
 package utils;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.TestException;
+
+/**
+ * Class used to wrap existing Selenium method
+ * Like retry mechanism, login, etc...
+ * New methods can be added based on existing model
+ * @author CristianB.
+ *
+ */
 
 public class SeleniumWrappers extends BaseTest {
 	
@@ -15,7 +27,13 @@ public class SeleniumWrappers extends BaseTest {
 	}
 	
 	
-	
+	/**
+	 * Wrapper method over selenium defaul click() method enhanced with
+	 * 1. waitForElement to be clickable
+	 * 2. Retry mechanism for Stale Element
+	 * 3. Logging for NoSuchElementException
+	 * @param element
+	 */
 	
 	public void click(WebElement element) {
 		
@@ -27,8 +45,13 @@ public class SeleniumWrappers extends BaseTest {
 		//WebElement element = driver.findElement(locator);	
 		element.click();
 		
-		}catch(Exception e) {
-			
+		}catch(NoSuchElementException e) {
+			Log.error("Element not found in method <click()> after 10 sec wait" + element);
+			Log.error(e.getMessage());
+			throw new TestException("Element not found in method <click()> after 10 sec wait");
+		}catch (StaleElementReferenceException e) {
+			Log.error("StaleException on element " + element);
+			element.click();
 		}	
 	}
 
